@@ -100,7 +100,7 @@ export const ReceitasManager = () => {
     <div className="space-y-6 p-6 bg-gradient-to-br from-gray-900 to-slate-900 min-h-screen">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-200">Gerenciar Receitas</h2>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-green-600 bg-clip-text text-transparent">Gerenciar Receitas</h2>
           <p className="text-gray-400">Total: {formatCurrency(totalReceitas)}</p>
         </div>
         
