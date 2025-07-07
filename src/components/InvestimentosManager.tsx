@@ -202,14 +202,14 @@ export const InvestimentosManager = () => {
   }));
 
   return (
-    <div className="space-y-8 p-6 bg-slate-50 min-h-screen">
+    <div className="space-y-8 p-6 bg-gradient-to-br from-gray-900 to-slate-900 min-h-screen">
       <div className="flex flex-col space-y-4">
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
               Meus Investimentos
             </h2>
-            <p className="text-gray-600 mt-1">Acompanhe seu portfólio e evolução</p>
+            <p className="text-gray-400 mt-1">Acompanhe seu portfólio e evolução</p>
           </div>
           <div className="hidden md:flex gap-3">
             <Button 
