@@ -15,7 +15,7 @@ export type Database = {
           descricao: string | null
           id: string
           nome: string
-          tipo: string
+          updated_at: string
           user_id: string
         }
         Insert: {
@@ -23,7 +23,7 @@ export type Database = {
           descricao?: string | null
           id?: string
           nome: string
-          tipo: string
+          updated_at?: string
           user_id: string
         }
         Update: {
@@ -31,7 +31,7 @@ export type Database = {
           descricao?: string | null
           id?: string
           nome?: string
-          tipo?: string
+          updated_at?: string
           user_id?: string
         }
         Relationships: []
@@ -42,6 +42,7 @@ export type Database = {
           created_at: string
           id: string
           nome: string
+          updated_at: string
           user_id: string
         }
         Insert: {
@@ -49,6 +50,7 @@ export type Database = {
           created_at?: string
           id?: string
           nome: string
+          updated_at?: string
           user_id: string
         }
         Update: {
@@ -56,56 +58,54 @@ export type Database = {
           created_at?: string
           id?: string
           nome?: string
+          updated_at?: string
           user_id?: string
         }
         Relationships: []
       }
       contas: {
         Row: {
-          categoria: string
+          categoria: string | null
           created_at: string
           data_pagamento: string | null
           data_vencimento: string
           id: string
           nome: string
           pago: boolean
-          parcela_atual: number | null
           periodo_recorrencia: string | null
           proxima_data: string | null
           recorrente: boolean
-          total_parcelas: number | null
+          updated_at: string
           user_id: string
           valor: number
         }
         Insert: {
-          categoria: string
+          categoria?: string | null
           created_at?: string
           data_pagamento?: string | null
           data_vencimento: string
           id?: string
           nome: string
           pago?: boolean
-          parcela_atual?: number | null
           periodo_recorrencia?: string | null
           proxima_data?: string | null
           recorrente?: boolean
-          total_parcelas?: number | null
+          updated_at?: string
           user_id: string
           valor: number
         }
         Update: {
-          categoria?: string
+          categoria?: string | null
           created_at?: string
           data_pagamento?: string | null
           data_vencimento?: string
           id?: string
           nome?: string
           pago?: boolean
-          parcela_atual?: number | null
           periodo_recorrencia?: string | null
           proxima_data?: string | null
           recorrente?: boolean
-          total_parcelas?: number | null
+          updated_at?: string
           user_id?: string
           valor?: number
         }
@@ -113,37 +113,40 @@ export type Database = {
       }
       investimentos: {
         Row: {
-          carteira_id: string
-          codigo: string
-          cotacao_atual: number | null
+          ativo: string
+          carteira_id: string | null
           created_at: string
           id: string
           preco_medio: number
           quantidade: number
           tipo: string
+          updated_at: string
           user_id: string
+          valor_atual: number | null
         }
         Insert: {
-          carteira_id: string
-          codigo: string
-          cotacao_atual?: number | null
+          ativo: string
+          carteira_id?: string | null
           created_at?: string
           id?: string
           preco_medio: number
           quantidade: number
           tipo: string
+          updated_at?: string
           user_id: string
+          valor_atual?: number | null
         }
         Update: {
-          carteira_id?: string
-          codigo?: string
-          cotacao_atual?: number | null
+          ativo?: string
+          carteira_id?: string | null
           created_at?: string
           id?: string
           preco_medio?: number
           quantidade?: number
           tipo?: string
+          updated_at?: string
           user_id?: string
+          valor_atual?: number | null
         }
         Relationships: [
           {
@@ -151,41 +154,6 @@ export type Database = {
             columns: ["carteira_id"]
             isOneToOne: false
             referencedRelation: "carteiras"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      notificacoes_email: {
-        Row: {
-          conta_id: string | null
-          created_at: string | null
-          enviado_em: string | null
-          id: string
-          tipo: string
-          user_id: string
-        }
-        Insert: {
-          conta_id?: string | null
-          created_at?: string | null
-          enviado_em?: string | null
-          id?: string
-          tipo: string
-          user_id: string
-        }
-        Update: {
-          conta_id?: string | null
-          created_at?: string | null
-          enviado_em?: string | null
-          id?: string
-          tipo?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "notificacoes_email_conta_id_fkey"
-            columns: ["conta_id"]
-            isOneToOne: false
-            referencedRelation: "contas"
             referencedColumns: ["id"]
           },
         ]
@@ -216,29 +184,32 @@ export type Database = {
       }
       receitas: {
         Row: {
-          categoria: string
+          categoria: string | null
           created_at: string
           data: string
           id: string
           nome: string
+          updated_at: string
           user_id: string
           valor: number
         }
         Insert: {
-          categoria: string
+          categoria?: string | null
           created_at?: string
           data: string
           id?: string
           nome: string
+          updated_at?: string
           user_id: string
           valor: number
         }
         Update: {
-          categoria?: string
+          categoria?: string | null
           created_at?: string
           data?: string
           id?: string
           nome?: string
+          updated_at?: string
           user_id?: string
           valor?: number
         }
@@ -249,10 +220,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      criar_proxima_conta_recorrente: {
-        Args: { conta_id: string }
-        Returns: undefined
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
