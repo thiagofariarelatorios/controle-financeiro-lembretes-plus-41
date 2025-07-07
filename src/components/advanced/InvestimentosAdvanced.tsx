@@ -33,7 +33,7 @@ export const InvestimentosAdvanced = () => {
     // Apply search
     if (searchQuery) {
       result = result.filter(investimento => 
-        investimento.codigo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        investimento.ativo.toLowerCase().includes(searchQuery.toLowerCase()) ||
         carteiras.find(c => c.id === investimento.carteira_id)?.nome.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
@@ -56,7 +56,7 @@ export const InvestimentosAdvanced = () => {
       const investimentosCarteira = processedInvestimentos.filter(inv => inv.carteira_id === carteira.id);
       const valorInvestido = investimentosCarteira.reduce((sum, inv) => sum + (inv.quantidade * inv.preco_medio), 0);
       const valorAtual = investimentosCarteira.reduce((sum, inv) => {
-        const cotacao = inv.cotacao_atual || inv.preco_medio;
+        const cotacao = inv.valor_atual || inv.preco_medio;
         return sum + (inv.quantidade * cotacao);
       }, 0);
       const resultado = valorAtual - valorInvestido;
@@ -77,7 +77,7 @@ export const InvestimentosAdvanced = () => {
   const stats = useMemo(() => {
     const totalInvestido = processedInvestimentos.reduce((sum, inv) => sum + (inv.quantidade * inv.preco_medio), 0);
     const totalAtual = processedInvestimentos.reduce((sum, inv) => {
-      const cotacao = inv.cotacao_atual || inv.preco_medio;
+      const cotacao = inv.valor_atual || inv.preco_medio;
       return sum + (inv.quantidade * cotacao);
     }, 0);
     const totalResultado = totalAtual - totalInvestido;
@@ -86,7 +86,7 @@ export const InvestimentosAdvanced = () => {
     // Best and worst performers
     const performanceData = processedInvestimentos.map(inv => {
       const valorInvestido = inv.quantidade * inv.preco_medio;
-      const cotacao = inv.cotacao_atual || inv.preco_medio;
+       const cotacao = inv.valor_atual || inv.preco_medio;
       const valorAtual = inv.quantidade * cotacao;
       const resultado = valorAtual - valorInvestido;
       const percentual = valorInvestido > 0 ? (resultado / valorInvestido) * 100 : 0;
@@ -137,7 +137,7 @@ export const InvestimentosAdvanced = () => {
     const tipoData = tiposInvestimento.map(tipo => {
       const investimentosTipo = processedInvestimentos.filter(inv => inv.tipo === tipo.value);
       const valor = investimentosTipo.reduce((sum, inv) => {
-        const cotacao = inv.cotacao_atual || inv.preco_medio;
+        const cotacao = inv.valor_atual || inv.preco_medio;
         return sum + (inv.quantidade * cotacao);
       }, 0);
       return {
@@ -269,7 +269,7 @@ export const InvestimentosAdvanced = () => {
                           {item.carteira.nome}
                         </CardTitle>
                         <p className="text-sm text-gray-600 mt-1">
-                          {item.carteira.tipo} • {item.investimentos.length} investimentos
+                          {item.investimentos.length} investimentos
                         </p>
                       </div>
                       <div className="text-right">
@@ -288,7 +288,7 @@ export const InvestimentosAdvanced = () => {
                     <div className="space-y-3">
                       {item.investimentos.map(investimento => {
                         const valorInvestido = investimento.quantidade * investimento.preco_medio;
-                        const cotacao = investimento.cotacao_atual || investimento.preco_medio;
+                        const cotacao = investimento.valor_atual || investimento.preco_medio;
                         const valorAtual = investimento.quantidade * cotacao;
                         const resultado = valorAtual - valorInvestido;
                         const percentual = valorInvestido > 0 ? (resultado / valorInvestido) * 100 : 0;
@@ -297,7 +297,7 @@ export const InvestimentosAdvanced = () => {
                           <div key={investimento.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                             <div className="flex items-center gap-3">
                               <Badge variant="outline" className="text-xs">
-                                {investimento.codigo}
+                                {investimento.ativo}
                               </Badge>
                               <div>
                                 <p className="font-medium text-sm">{investimento.quantidade} cotas</p>
@@ -335,7 +335,7 @@ export const InvestimentosAdvanced = () => {
               {processedInvestimentos.map(investimento => {
                 const carteira = carteiras.find(c => c.id === investimento.carteira_id);
                 const valorInvestido = investimento.quantidade * investimento.preco_medio;
-                const cotacao = investimento.cotacao_atual || investimento.preco_medio;
+                const cotacao = investimento.valor_atual || investimento.preco_medio;
                 const valorAtual = investimento.quantidade * cotacao;
                 const resultado = valorAtual - valorInvestido;
                 const percentual = valorInvestido > 0 ? (resultado / valorInvestido) * 100 : 0;
@@ -346,7 +346,7 @@ export const InvestimentosAdvanced = () => {
                       <div className="flex justify-between items-start">
                         <div className="space-y-2 flex-1">
                           <div className="flex items-center gap-3">
-                            <h3 className="font-semibold text-lg text-gray-800">{investimento.codigo}</h3>
+                            <h3 className="font-semibold text-lg text-gray-800">{investimento.ativo}</h3>
                             <Badge variant="outline">
                               {carteira?.nome}
                             </Badge>
@@ -429,10 +429,10 @@ export const InvestimentosAdvanced = () => {
                     <h4 className="font-medium text-gray-700">Melhores e Piores</h4>
                     <ul className="space-y-1 text-sm text-gray-600">
                       {stats.melhorInvestimento && (
-                        <li className="text-green-600">📈 Melhor: {stats.melhorInvestimento.codigo} (+{stats.melhorInvestimento.percentual.toFixed(2)}%)</li>
+                        <li className="text-green-600">📈 Melhor: {stats.melhorInvestimento.ativo} (+{stats.melhorInvestimento.percentual.toFixed(2)}%)</li>
                       )}
                       {stats.piorInvestimento && (
-                        <li className="text-red-600">📉 Pior: {stats.piorInvestimento.codigo} ({stats.piorInvestimento.percentual.toFixed(2)}%)</li>
+                        <li className="text-red-600">📉 Pior: {stats.piorInvestimento.ativo} ({stats.piorInvestimento.percentual.toFixed(2)}%)</li>
                       )}
                       {stats.percentualTotal > 0 && (
                         <li className="text-green-600">✅ Portfolio em alta!</li>

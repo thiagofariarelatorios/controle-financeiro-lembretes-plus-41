@@ -340,7 +340,7 @@ export const useSupabaseData = () => {
 
     const { data, error } = await supabase
       .from('investimentos')
-      .insert([{ ...investimento, user_id: user.id }])
+      .insert([{ ...investimento, user_id: user.id, ativo: investimento.ativo }])
       .select()
       .single();
 

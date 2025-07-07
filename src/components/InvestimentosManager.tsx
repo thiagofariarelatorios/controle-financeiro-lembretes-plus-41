@@ -48,7 +48,6 @@ export const InvestimentosManager = () => {
   
   const [carteiraFormData, setCarteiraFormData] = useState({
     nome: '',
-    tipo: 'corretora' as 'corretora' | 'banco' | 'carteira',
     descricao: '',
   });
 
@@ -61,7 +60,7 @@ export const InvestimentosManager = () => {
   });
 
   const resetCarteiraForm = () => {
-    setCarteiraFormData({ nome: '', tipo: 'corretora', descricao: '' });
+    setCarteiraFormData({ nome: '', descricao: '' });
     setEditingCarteira(null);
   };
 
@@ -78,7 +77,7 @@ export const InvestimentosManager = () => {
 
   const handleCarteiraSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!carteiraFormData.nome || !carteiraFormData.tipo) return;
+    if (!carteiraFormData.nome) return;
 
     if (editingCarteira) {
       editarCarteira(editingCarteira.id, carteiraFormData);
@@ -97,7 +96,7 @@ export const InvestimentosManager = () => {
     const investimentoData = {
       carteira_id: investimentoFormData.carteiraId,
       tipo: investimentoFormData.tipo,
-      codigo: investimentoFormData.codigo.toUpperCase(),
+      ativo: investimentoFormData.codigo.toUpperCase(),
       quantidade: parseInt(investimentoFormData.quantidade),
       preco_medio: parseFloat(investimentoFormData.precoMedio),
     };
@@ -116,7 +115,6 @@ export const InvestimentosManager = () => {
     setEditingCarteira(carteira);
     setCarteiraFormData({
       nome: carteira.nome,
-      tipo: carteira.tipo,
       descricao: carteira.descricao || '',
     });
     setIsCarteiraDialogOpen(true);
@@ -127,7 +125,7 @@ export const InvestimentosManager = () => {
     setInvestimentoFormData({
       carteiraId: investimento.carteira_id,
       tipo: investimento.tipo,
-      codigo: investimento.codigo,
+      codigo: investimento.ativo,
       quantidade: investimento.quantidade.toString(),
       precoMedio: investimento.preco_medio.toString(),
     });
@@ -135,15 +133,15 @@ export const InvestimentosManager = () => {
   };
 
   const calcularResultado = (investimento: Investimento) => {
-    if (!investimento.cotacao_atual) return 0;
-    const valorAtual = investimento.quantidade * investimento.cotacao_atual;
+    if (!investimento.valor_atual) return 0;
+    const valorAtual = investimento.quantidade * investimento.valor_atual;
     const valorInvestido = investimento.quantidade * investimento.preco_medio;
     return valorAtual - valorInvestido;
   };
 
   const calcularPercentual = (investimento: Investimento) => {
-    if (!investimento.cotacao_atual) return 0;
-    return ((investimento.cotacao_atual - investimento.preco_medio) / investimento.preco_medio) * 100;
+    if (!investimento.valor_atual) return 0;
+    return ((investimento.valor_atual - investimento.preco_medio) / investimento.preco_medio) * 100;
   };
 
   const getTipoNome = (tipo: string) => {
@@ -195,8 +193,8 @@ export const InvestimentosManager = () => {
   };
 
   const valorTotalCarteira = investimentos.reduce((total, inv) => {
-    if (!inv.cotacao_atual) return total;
-    const valor = inv.quantidade * inv.cotacao_atual;
+    if (!inv.valor_atual) return total;
+    const valor = inv.quantidade * inv.valor_atual;
     return total + valor;
   }, 0);
 
@@ -256,19 +254,6 @@ export const InvestimentosManager = () => {
                   />
                 </div>
                 <div>
-                  <Label>Tipo</Label>
-                  <Select value={carteiraFormData.tipo} onValueChange={(value: 'corretora' | 'banco' | 'carteira') => setCarteiraFormData(prev => ({ ...prev, tipo: value }))}>
-                    <SelectTrigger className="border-2 focus:border-blue-500 transition-colors">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white/90 backdrop-blur-lg border-0 shadow-xl">
-                      <SelectItem value="corretora">Corretora</SelectItem>
-                      <SelectItem value="banco">Banco</SelectItem>
-                      <SelectItem value="carteira">Carteira</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
                   <Label htmlFor="descricao-carteira">Descrição (opcional)</Label>
                   <Input
                     id="descricao-carteira"
@@ -311,7 +296,7 @@ export const InvestimentosManager = () => {
                     <SelectContent className="bg-white/90 backdrop-blur-lg border-0 shadow-xl">
                       {carteiras.map(carteira => (
                         <SelectItem key={carteira.id} value={carteira.id}>
-                          {carteira.nome} ({getTipoCarteira(carteira.tipo)})
+                          {carteira.nome}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -450,7 +435,7 @@ export const InvestimentosManager = () => {
                 <div>
                   <CardTitle className="text-xl font-bold text-gray-800">{carteira.nome}</CardTitle>
                   <p className="text-sm text-gray-600">
-                    {getTipoCarteira(carteira.tipo)} • {invs.length} investimento{invs.length !== 1 ? 's' : ''}
+                    {invs.length} investimento{invs.length !== 1 ? 's' : ''}
                   </p>
                   {carteira.descricao && (
                     <p className="text-sm text-gray-500 mt-1">{carteira.descricao}</p>
@@ -459,8 +444,8 @@ export const InvestimentosManager = () => {
                 <div className="flex items-center gap-3">
                      <Badge variant="outline" className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-blue-300 px-3 py-1">
                        {invs.some(inv => inv.tipo === 'acao-internacional') ? 'Múltiplas moedas' : formatCurrency(invs.reduce((total, inv) => {
-                          if (!inv.cotacao_atual) return total;
-                          const valor = inv.quantidade * inv.cotacao_atual;
+                          if (!inv.valor_atual) return total;
+                          const valor = inv.quantidade * inv.valor_atual;
                           return total + valor;
                        }, 0))}
                      </Badge>
@@ -519,7 +504,7 @@ export const InvestimentosManager = () => {
                   {invs.map(investimento => {
                     const resultado = calcularResultado(investimento);
                     const percentual = calcularPercentual(investimento);
-                     const valorAtual = investimento.quantidade * (investimento.cotacao_atual || 0);
+                     const valorAtual = investimento.quantidade * (investimento.valor_atual || 0);
                      const valorInvestido = investimento.quantidade * investimento.preco_medio;
 
                     return (
@@ -527,7 +512,7 @@ export const InvestimentosManager = () => {
                         <div className="flex justify-between items-start">
                           <div className="space-y-3 flex-1">
                             <div className="flex items-center gap-3 flex-wrap">
-                              <h3 className="font-bold text-xl text-gray-800">{investimento.codigo}</h3>
+                              <h3 className="font-bold text-xl text-gray-800">{investimento.ativo}</h3>
                               <Badge variant="outline" className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 border-blue-300">
                                 {getTipoNome(investimento.tipo)}
                               </Badge>
@@ -540,7 +525,7 @@ export const InvestimentosManager = () => {
                                  <p className="text-gray-600">Valor Investido: <span className="font-semibold text-gray-800">{formatCurrency(valorInvestido, investimento.tipo)}</span></p>
                               </div>
                               <div className="space-y-1">
-                                  <p className="text-gray-600">Cotação Atual: <span className="font-semibold text-gray-800">{investimento.cotacao_atual ? formatCurrency(investimento.cotacao_atual, investimento.tipo) : 'N/A'}</span></p>
+                                  <p className="text-gray-600">Cotação Atual: <span className="font-semibold text-gray-800">{investimento.valor_atual ? formatCurrency(investimento.valor_atual, investimento.tipo) : 'N/A'}</span></p>
                                   <p className="text-gray-600">Valor Atual: <span className="font-semibold text-gray-800">{formatCurrency(valorAtual, investimento.tipo)}</span></p>
                               </div>
                             </div>
@@ -577,7 +562,7 @@ export const InvestimentosManager = () => {
                                   <AlertDialogHeader>
                                     <AlertDialogTitle>Confirmar Exclusão</AlertDialogTitle>
                                     <AlertDialogDescription>
-                                      Tem certeza que deseja excluir o investimento "{investimento.codigo}"? Esta ação não pode ser desfeita.
+                                      Tem certeza que deseja excluir o investimento "{investimento.ativo}"? Esta ação não pode ser desfeita.
                                     </AlertDialogDescription>
                                   </AlertDialogHeader>
                                   <AlertDialogFooter>

@@ -22,7 +22,6 @@ export interface Receita {
 export interface Carteira {
   id: string;
   nome: string;
-  tipo: 'corretora' | 'banco' | 'carteira';
   descricao?: string;
 }
 
@@ -30,10 +29,10 @@ export interface Investimento {
   id: string;
   carteira_id: string;
   tipo: 'acao-nacional' | 'fii' | 'bdr' | 'acao-internacional';
-  codigo: string;
+  ativo: string;
   quantidade: number;
   preco_medio: number;
-  cotacao_atual?: number;
+  valor_atual?: number;
 }
 
 export interface CotacaoDolar {
