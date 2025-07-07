@@ -145,13 +145,13 @@ export const ContasManager = () => {
   }, [contas]);
 
   return (
-    <div className="space-y-8 p-6 bg-slate-50 min-h-screen">
+    <div className="space-y-8 p-6 bg-gradient-to-br from-gray-900 to-slate-900 min-h-screen">
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Gerenciar Contas
           </h2>
-          <p className="text-gray-600 mt-1">Organize suas contas e mantenha-se em dia</p>
+          <p className="text-gray-400 mt-1">Organize suas contas e mantenha-se em dia</p>
         </div>
         
         {/* ====================================================================== */}
@@ -334,7 +334,7 @@ export const ContasManager = () => {
       {/* O restante do código (listagem de contas) permanece o mesmo */}
       {/* Contas Pendentes */}
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-gray-800">Contas Pendentes</h3>
+        <h3 className="text-xl font-semibold text-gray-200">Contas Pendentes</h3>
         <div className="grid gap-4">
           {contasFiltradas.length > 0 ? contasFiltradas.map(conta => (
             <Card key={conta.id} className="hover:shadow-lg transition-all duration-300 border-0 bg-white/90 backdrop-blur-lg shadow-md">
@@ -425,7 +425,7 @@ export const ContasManager = () => {
       {contasPagas.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-gray-800">
+            <h3 className="text-xl font-semibold text-gray-200">
               Contas Pagas ({contasPagas.length})
             </h3>
             <Button
