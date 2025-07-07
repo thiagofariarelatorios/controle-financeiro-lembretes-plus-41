@@ -49,7 +49,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                 <Wallet className="h-5 w-5 text-white" />
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-indigo-300 transition-all duration-300">
-                My Money
+                Meu Money
               </h1>
             </div>
             <div className="flex space-x-2">
@@ -100,7 +100,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
               <Wallet className="h-4 w-4 text-white" />
             </div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-indigo-300 transition-all duration-300">
-              My Money
+              Meu Money
             </h1>
           </div>
           <div className="flex items-center space-x-2">
