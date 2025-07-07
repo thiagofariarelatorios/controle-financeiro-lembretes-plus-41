@@ -1,12 +1,11 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/hooks/useAuth';
-import { 
-  BarChart, 
-  CreditCard, 
-  TrendingUp, 
+import {
+  BarChart,
+  CreditCard,
+  TrendingUp,
   DollarSign,
   Menu,
   X,
@@ -41,7 +40,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex bg-white/80 backdrop-blur-lg border-b border-gray-200/50 px-6 py-4 shadow-lg">
+      <nav className="hidden md:flex bg-gray-900/90 backdrop-blur-lg border-b border-gray-700/50 px-6 py-4 shadow-lg">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center space-x-6">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -56,9 +55,9 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                     variant={activeTab === tab.id ? 'default' : 'ghost'}
                     onClick={() => onTabChange(tab.id)}
                     className={`flex items-center gap-2 transition-all duration-300 ${
-                      activeTab === tab.id 
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg transform scale-105' 
-                        : 'hover:bg-purple-50 hover:text-purple-700 hover:shadow-md hover:transform hover:scale-105'
+                      activeTab === tab.id
+                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg transform scale-105'
+                        : 'text-gray-300 hover:bg-gray-800 hover:text-white hover:shadow-md hover:transform hover:scale-105'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -68,13 +67,13 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
               })}
             </div>
           </div>
-          
+         
           <div className="flex items-center space-x-4">
             <Button
               variant="ghost"
               size="icon"
               onClick={handleSettingsClick}
-              className="hover:bg-purple-50 hover:text-purple-700"
+              className="text-gray-300 hover:bg-gray-800 hover:text-white"
             >
               <Settings className="h-5 w-5" />
             </Button>
@@ -88,7 +87,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="md:hidden bg-white/80 backdrop-blur-lg border-b border-gray-200/50 shadow-lg">
+      <nav className="md:hidden bg-gray-900/90 backdrop-blur-lg border-b border-gray-700/50 shadow-lg">
         <div className="flex justify-between items-center px-4 py-3">
           <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             My Money
@@ -98,7 +97,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
               variant="ghost"
               size="icon"
               onClick={handleSettingsClick}
-              className="hover:bg-purple-50 hover:text-purple-700"
+              className="text-gray-300 hover:bg-gray-800 hover:text-white"
             >
               <Settings className="h-5 w-5" />
             </Button>
@@ -106,15 +105,15 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
               variant="ghost"
               size="icon"
               onClick={toggleMobileMenu}
-              className="hover:bg-purple-50 hover:text-purple-700 transition-all duration-200"
+              className="text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
-        
+       
         {isMobileMenuOpen && (
-          <div className="border-t border-gray-200/50 bg-white/90 backdrop-blur-lg">
+          <div className="border-t border-gray-700/50 bg-gray-900/90 backdrop-blur-lg">
             <div className="px-4 py-2 space-y-1">
               {tabs.map(tab => {
                 const Icon = tab.icon;
@@ -127,9 +126,9 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                       setIsMobileMenuOpen(false);
                     }}
                     className={`w-full justify-start gap-2 transition-all duration-300 ${
-                      activeTab === tab.id 
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg' 
-                        : 'hover:bg-purple-50 hover:text-purple-700 hover:shadow-md'
+                      activeTab === tab.id
+                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                        : 'text-gray-300 hover:bg-gray-800 hover:text-white hover:shadow-md'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
