@@ -186,7 +186,7 @@ export const ContasManager = () => {
                   value={formData.nome}
                   onChange={(e) => setFormData(prev => ({ ...prev, nome: e.target.value }))}
                   placeholder="Ex: Conta de luz"
-                  className="border-2 focus:border-blue-500 transition-colors"
+                   className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                   required
                 />
               </div>
@@ -200,7 +200,7 @@ export const ContasManager = () => {
                   value={formData.valor}
                   onChange={(e) => setFormData(prev => ({ ...prev, valor: e.target.value }))}
                   placeholder="0.00"
-                  className="border-2 focus:border-blue-500 transition-colors"
+                   className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                   required
                 />
               </div>
@@ -239,7 +239,7 @@ export const ContasManager = () => {
                     value={formData.categoria} 
                     onValueChange={(value) => setFormData(prev => ({ ...prev, categoria: value }))}
                   >
-                    <SelectTrigger className="flex-1 border-2 focus:border-blue-500 transition-colors">
+                    <SelectTrigger className="flex-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors">
                       <SelectValue placeholder="Selecione uma categoria" />
                     </SelectTrigger>
                     <SelectContent className="bg-white/90 backdrop-blur-lg border-0 shadow-xl">
@@ -273,7 +273,7 @@ export const ContasManager = () => {
                       placeholder="Nome da nova categoria"
                       value={novaCategoria}
                       onChange={(e) => setNovaCategoria(e.target.value)}
-                      className="border-2 focus:border-blue-500 transition-colors"
+                       className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                     />
                     <Button type="button" size="icon" onClick={handleAdicionarCategoria}>
                       <Check className="h-4 w-4" />
@@ -311,7 +311,7 @@ export const ContasManager = () => {
                         setFormData(prev => ({ ...prev, periodoRecorrencia: value }))
                       }
                     >
-                      <SelectTrigger className="border-2 focus:border-blue-500 transition-colors">
+                      <SelectTrigger className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-white/90 backdrop-blur-lg border-0 shadow-xl">

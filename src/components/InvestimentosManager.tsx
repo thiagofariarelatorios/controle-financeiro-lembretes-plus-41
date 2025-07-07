@@ -249,7 +249,7 @@ export const InvestimentosManager = () => {
                     value={carteiraFormData.nome}
                     onChange={(e) => setCarteiraFormData(prev => ({ ...prev, nome: e.target.value }))}
                     placeholder="Ex: Clear Corretora, Nubank"
-                    className="border-2 focus:border-blue-500 transition-colors"
+                     className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                     required
                   />
                 </div>
@@ -260,7 +260,7 @@ export const InvestimentosManager = () => {
                     value={carteiraFormData.descricao}
                     onChange={(e) => setCarteiraFormData(prev => ({ ...prev, descricao: e.target.value }))}
                     placeholder="Descrição da carteira"
-                    className="border-2 focus:border-blue-500 transition-colors"
+                     className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                   />
                 </div>
                 <Button type="submit" className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -290,7 +290,7 @@ export const InvestimentosManager = () => {
                 <div>
                   <Label>Carteira</Label>
                   <Select value={investimentoFormData.carteiraId} onValueChange={(value) => setInvestimentoFormData(prev => ({ ...prev, carteiraId: value }))}>
-                    <SelectTrigger className="border-2 focus:border-blue-500 transition-colors">
+                     <SelectTrigger className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors">
                       <SelectValue placeholder="Selecione uma carteira" />
                     </SelectTrigger>
                     <SelectContent className="bg-white/90 backdrop-blur-lg border-0 shadow-xl">
@@ -305,7 +305,7 @@ export const InvestimentosManager = () => {
                 <div>
                   <Label>Tipo</Label>
                   <Select value={investimentoFormData.tipo} onValueChange={(value: any) => setInvestimentoFormData(prev => ({ ...prev, tipo: value }))}>
-                    <SelectTrigger className="border-2 focus:border-blue-500 transition-colors">
+                    <SelectTrigger className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-white/90 backdrop-blur-lg border-0 shadow-xl">
@@ -323,7 +323,7 @@ export const InvestimentosManager = () => {
                     value={investimentoFormData.codigo}
                     onChange={(e) => setInvestimentoFormData(prev => ({ ...prev, codigo: e.target.value }))}
                     placeholder="Ex: VALE3, HGLG11"
-                    className="border-2 focus:border-blue-500 transition-colors"
+                     className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                     required
                   />
                 </div>
@@ -335,7 +335,7 @@ export const InvestimentosManager = () => {
                     value={investimentoFormData.quantidade}
                     onChange={(e) => setInvestimentoFormData(prev => ({ ...prev, quantidade: e.target.value }))}
                     placeholder="100"
-                    className="border-2 focus:border-blue-500 transition-colors"
+                     className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                     required
                   />
                 </div>
@@ -348,7 +348,7 @@ export const InvestimentosManager = () => {
                     value={investimentoFormData.precoMedio}
                     onChange={(e) => setInvestimentoFormData(prev => ({ ...prev, precoMedio: e.target.value }))}
                     placeholder="65.50"
-                    className="border-2 focus:border-blue-500 transition-colors"
+                    className="focus:ring-2 focus:ring-blue-500 focus:border-transparent border-2 transition-colors"
                     required
                   />
                 </div>

@@ -10,7 +10,8 @@ import {
   Menu,
   X,
   Settings,
-  User
+  User,
+  Wallet
 } from 'lucide-react';
 
 interface NavigationProps {
@@ -40,12 +41,17 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex bg-gray-900/90 backdrop-blur-lg border-b border-gray-700/50 px-6 py-4 shadow-lg">
+      <nav className="hidden md:flex bg-gray-900/90 backdrop-blur-lg border-b border-gray-700/50 px-6 py-4 shadow-lg hover:shadow-xl transition-all duration-300">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center space-x-6">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              My Money
-            </h1>
+            <div className="flex items-center gap-3 group">
+              <div className="p-2 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg group-hover:from-blue-600 group-hover:to-indigo-600 transition-all duration-300 group-hover:scale-110 shadow-lg">
+                <Wallet className="h-5 w-5 text-white" />
+              </div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-indigo-300 transition-all duration-300">
+                My Money
+              </h1>
+            </div>
             <div className="flex space-x-2">
               {tabs.map(tab => {
                 const Icon = tab.icon;
@@ -56,7 +62,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                     onClick={() => onTabChange(tab.id)}
                     className={`flex items-center gap-2 transition-all duration-300 ${
                       activeTab === tab.id
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg transform scale-105'
+                        ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg transform scale-105 hover:shadow-xl'
                         : 'text-gray-300 hover:bg-gray-800 hover:text-white hover:shadow-md hover:transform hover:scale-105'
                     }`}
                   >
@@ -87,11 +93,16 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="md:hidden bg-gray-900/90 backdrop-blur-lg border-b border-gray-700/50 shadow-lg">
+      <nav className="md:hidden bg-gray-900/90 backdrop-blur-lg border-b border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300">
         <div className="flex justify-between items-center px-4 py-3">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            My Money
-          </h1>
+          <div className="flex items-center gap-2 group">
+            <div className="p-1.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg group-hover:from-blue-600 group-hover:to-indigo-600 transition-all duration-300 group-hover:scale-110 shadow-lg">
+              <Wallet className="h-4 w-4 text-white" />
+            </div>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-indigo-300 transition-all duration-300">
+              My Money
+            </h1>
+          </div>
           <div className="flex items-center space-x-2">
             <Button
               variant="ghost"
@@ -127,7 +138,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                     }}
                     className={`w-full justify-start gap-2 transition-all duration-300 ${
                       activeTab === tab.id
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                        ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg hover:shadow-xl'
                         : 'text-gray-300 hover:bg-gray-800 hover:text-white hover:shadow-md'
                     }`}
                   >
