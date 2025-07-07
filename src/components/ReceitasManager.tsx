@@ -97,11 +97,11 @@ export const ReceitasManager = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6 bg-gradient-to-br from-gray-900 to-slate-900 min-h-screen">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Gerenciar Receitas</h2>
-          <p className="text-gray-600">Total: {formatCurrency(totalReceitas)}</p>
+          <h2 className="text-2xl font-bold text-gray-200">Gerenciar Receitas</h2>
+          <p className="text-gray-400">Total: {formatCurrency(totalReceitas)}</p>
         </div>
         
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
