@@ -167,12 +167,12 @@ export const ContasManager = () => {
           if (!open) resetForm();
         }}>
           <DialogTrigger asChild>
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg">
               <Plus className="h-4 w-4 mr-2" />
               Nova Conta
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[500px] bg-white/80 backdrop-blur-lg border-0 shadow-2xl">
+          <DialogContent className="sm:max-w-[425px] bg-white/10 backdrop-blur-xl border border-white/10">
             <DialogHeader>
               <DialogTitle className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {editingConta ? 'Editar Conta' : 'Adicionar Nova Conta'}
@@ -216,7 +216,7 @@ export const ContasManager = () => {
                         !formData.dataVencimento && "text-muted-foreground"
                       )}
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      <CalendarIcon className="mr-2 h-4 w-4 text-purple-500" />
                       {formData.dataVencimento ? formatDate(formData.dataVencimento) : "Selecione uma data"}
                     </Button>
                   </PopoverTrigger>
@@ -413,7 +413,7 @@ export const ContasManager = () => {
           ))}
           
           {contasFiltradas.length === 0 && (
-            <Card className="border-0 bg-white/90 backdrop-blur-lg shadow-md">
+            <Card className="border-0 bg-white/5 backdrop-blur-lg shadow-md">
               <CardContent className="pt-6 text-center py-12">
                 <p className="text-gray-500">Nenhuma conta pendente para este mês.</p>
                 <p className="text-sm text-gray-400 mt-2">Clique em "Nova Conta" para adicionar!</p>
