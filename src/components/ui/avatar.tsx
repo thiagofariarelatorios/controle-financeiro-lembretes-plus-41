@@ -3,21 +3,28 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar"
 
 import { cn } from "@/lib/utils"
 
+// Componente modificado para incluir a borda de gradiente
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
 >(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
+  <div
     className={cn(
-      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      "relative flex h-10 w-10 shrink-0 rounded-full p-[2px] bg-gradient-to-r from-purple-500 to-pink-500",
       className
     )}
-    {...props}
-  />
-))
-Avatar.displayName = AvatarPrimitive.Root.displayName
+  >
+    <AvatarPrimitive.Root
+      ref={ref}
+      className="h-full w-full rounded-full"
+      {...props}
+    />
+  </div>
+));
+Avatar.displayName = AvatarPrimitive.Root.displayName;
 
+
+// Nenhuma alteração necessária abaixo
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
