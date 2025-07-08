@@ -1,1 +1,4 @@
 project_id = "plxdtewdtnqyaxdkafbq"
+
+[functions.notificar-contas]
+verify_jwt = false
