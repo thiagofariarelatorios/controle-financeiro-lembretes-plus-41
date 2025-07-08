@@ -5,6 +5,7 @@ import { Dashboard } from '@/components/Dashboard';
 import { ReceitasManager } from '@/components/ReceitasManager';
 import { ContasManager } from '@/components/ContasManager';
 import { InvestimentosManager } from '@/components/InvestimentosManager';
+import { NotificationsManager } from '@/components/NotificationsManager';
 import { ReceitasEvolution } from '@/components/charts/ReceitasEvolution';
 
 const Index = () => {
@@ -25,6 +26,8 @@ const Index = () => {
         return <ContasManager />;
       case 'investimentos':
         return <InvestimentosManager />;
+      case 'notificacoes':
+        return <NotificationsManager />;
       default:
         return <Dashboard />;
     }

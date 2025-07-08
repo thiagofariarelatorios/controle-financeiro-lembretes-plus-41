@@ -11,7 +11,8 @@ import {
   X,
   Settings,
   User,
-  Wallet
+  Wallet,
+  Bell
 } from 'lucide-react';
 
 interface NavigationProps {
@@ -28,6 +29,7 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
     { id: 'contas', label: 'Contas', icon: CreditCard },
     { id: 'receitas', label: 'Receitas', icon: DollarSign },
     { id: 'investimentos', label: 'Investimentos', icon: TrendingUp },
+    { id: 'notificacoes', label: 'Notificações', icon: Bell },
   ];
 
   const toggleMobileMenu = () => {
